@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* globals.css */
+
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Ensures header, main content, and footer are positioned correctly */
+#page-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+main {
+  flex: 1;
+}
+
+@keyframes wobble {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.hover\\:animate-wobble:hover {
+  animation: wobble 0.5s ease-in-out;
+}
+
+/* General styles for WebKit-based browsers */
+::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+  height: 8px; /* Optional: set the height for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #000000; /* Black thumb color */
+  border-radius: 4px; /* Rounded corners of the scrollbar thumb */
+  border: 2px solid transparent; /* Optional: border for the thumb */
+  background-clip: content-box; /* Prevents the border from overlapping the background color */
+}
+
+::-webkit-scrollbar-track {
+  background: #F0F0F0; /* Light gray track color for light mode */
+  border-radius: 4px; /* Rounded corners of the track */
+  box-shadow: inset 0 0 5px #C6C6C6; /* Optional: adding some shadow inside the track */
+}
+
+/* Dark mode scrollbar styling */
+.dark ::-webkit-scrollbar-thumb {
+  background-color: #000000; /* Black thumb color */
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #2D3748; /* Dark gray track color for dark mode */
+  box-shadow: inset 0 0 5px #1A202C; /* Optional: darker shadow for the track */
+}
+
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin; /* "auto", "thin", or "none" */
+  scrollbar-color: #000000 #F0F0F0; /* Thumb and track color for light mode */
+}
+
+/* Dark mode scrollbar styling for Firefox */
+.dark * {
+  scrollbar-color: #000000 #2D3748; /* Thumb and track color for dark mode */
+}
+
+/* Example class for a specific container with custom scrollbars */
+.my-custom-scrollbar {
+  overflow-y: auto; /* Ensures scrollbar is only shown when necessary */
+}
+
+.my-custom-scrollbar::-webkit-scrollbar {
+  width: 5px; /* Thinner scrollbar for specific container */
+}
+
+.my-custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #000000; /* Black thumb color */
+}
+
+.my-custom-scrollbar::-webkit-scrollbar-track {
+  background: #C6F6D5; /* Light green track color for specific container */
+}
+
+/* Dark mode styles for the specific container scrollbar */
+.dark .my-custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #000000; /* Black thumb color for dark mode */
+}
+
+.dark .my-custom-scrollbar::-webkit-scrollbar-track {
+  background: #1A202C; /* Darker track color for dark mode */
+}
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
