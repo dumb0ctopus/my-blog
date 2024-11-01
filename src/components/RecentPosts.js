@@ -1,12 +1,9 @@
-// components/RecentPosts.js or components/RecentPosts.tsx
+// components/RecentPosts.js
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { format } from "date-fns";
-import Slugger from "github-slugger";
-
-// Initialize Slugger instance
-const slugger = new Slugger();
+import slugify from "@/utils/slugify";
 
 export default function RecentPosts({ posts }) {
   return (
@@ -24,11 +21,11 @@ export default function RecentPosts({ posts }) {
             <Image
               src={post.image}
               alt={post.title}
-              width={post.image.width || 600} // Provide default width if not available
-              height={post.image.height || 400} // Provide default height if not available
+              width={600}
+              height={400}
               className="w-full h-full object-center object-cover aspect-[4/3] group-hover:scale-105 transition-transform duration-300"
               placeholder="blur"
-              blurDataURL="/placeholder.png" // Ensure you have a placeholder image
+              blurDataURL="/placeholder.png"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </Link>
@@ -38,7 +35,7 @@ export default function RecentPosts({ posts }) {
             {/* Tag */}
             {post.tags[0] && (
               <span className="uppercase text-accent dark:text-accentDark font-semibold text-xs sm:text-sm">
-                <Link href={`/categories/${slugger.slug(post.tags[0])}`}>
+                <Link href={`/categories/${slugify(post.tags[0])}`}>
                   {post.tags[0]}
                 </Link>
               </span>

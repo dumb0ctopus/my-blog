@@ -4,7 +4,7 @@ import React from "react";
 
 const MoonIcon = ({ width = "200px", height = "200px", className = "" }) => (
   <svg
-    fill="#000000"
+    fill="currentColor"
     height={height}
     width={width}
     version="1.1"
@@ -14,9 +14,9 @@ const MoonIcon = ({ width = "200px", height = "200px", className = "" }) => (
     viewBox="0 0 64 64"
     enableBackground="new 0 0 64 64"
     xmlSpace="preserve"
-    className="hover:animate-wobble"
+    className="hover:animate-wobble text-black"
   >
-    <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+    <g id="SVGRepo_bgCarrier" strokeWidth="2"></g>
     <g
       id="SVGRepo_tracerCarrier"
       strokeLinecap="round"
@@ -39,7 +39,6 @@ const MoonIcon = ({ width = "200px", height = "200px", className = "" }) => (
         c8.5741997,12.4188995,25.7422009,15.6094017,38.2666016,7.1133003
         c0.8260994-0.5606003,1.5996017-1.149498,2.3182983-1.764698
         C58.4803047,48.6472321,54.6766052,53.3542328,49.7098045,56.7224312z"
-        strokeWidth="2"
       ></path>
     </g>
   </svg>

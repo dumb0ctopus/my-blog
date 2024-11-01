@@ -1,11 +1,24 @@
+// src/pages/index.js or src/app/page.js (depending on your Next.js setup)
+import React from "react";
 import HomeCover from "@/components/HomeCover";
 import FeaturedPosts from "@/components/FeaturedPosts";
 import RecentPosts from "@/components/RecentPosts";
+import TogglePostsAndTags from "@/components/TogglePostsAndTags"; // Corrected import path
 import getPostMetadata from "@/utils/getPostMetadata";
+import Link from "next/link";
 
 export default function HomePage(props) {
-  // Default to empty array
-const posts = getPostMetadata();
+  // Fetch posts metadata
+  const posts = getPostMetadata();
+
+  // Check if posts array is not empty to prevent errors
+  if (!posts || posts.length === 0) {
+    return (
+      <main className="container mx-auto p-4 mt-32">
+        <p className="text-center text-gray-500">No posts available.</p>
+      </main>
+    );
+  }
 
   // Divide posts into sections
   const homecoverPost = posts[0];
@@ -14,22 +27,53 @@ const posts = getPostMetadata();
 
   return (
     <main className="container mx-auto p-4 mt-32">
-      {/* Homecover Section */}
+      {/* HomeCover Section */}
       <section className="mb-8">
         <HomeCover post={homecoverPost} />
       </section>
 
-      {/* Featured Posts Section */}
-      <section className="mb-8">
-        <h2 className="text-3xl font-semibold mb-6">Featured Posts</h2>
-        <FeaturedPosts posts={featuredPosts} />
-      </section>
+      {/* Featured Posts and TogglePostsAndTags for Medium and Large Screens */}
+      <div className="hidden md:flex mb-8">
+        <div className="flex-1">
+          <section className="mb-8">
+            <h2 className="text-3xl font-semibold mb-6">Featured Posts</h2>
+            <FeaturedPosts posts={featuredPosts} />
+          </section>
+        </div>
+        <div className="max-w-sm w-full mt-11">
+          <TogglePostsAndTags posts={posts} />
+        </div>
+      </div>
 
-      {/* Recent Posts Section */}
-      <section>
-        <h2 className="text-3xl font-semibold mb-6">Recent Posts</h2>
-        <RecentPosts posts={recentPosts} />
-      </section>
+      {/* Featured Posts, Recent Posts, and TogglePostsAndTags for Small Screens */}
+      <div className="md:hidden flex flex-col space-y-8 mb-8">
+        <div>
+          <section className="mb-8">
+            <h2 className="text-3xl font-semibold mb-6">Featured Posts</h2>
+            <FeaturedPosts posts={featuredPosts} />
+          </section>
+        </div>
+        <div>
+          <section className="mb-8">
+            <h2 className="text-3xl font-semibold mb-6">Recent Posts</h2>
+            <RecentPosts posts={recentPosts} />
+          </section>
+        </div>
+        {/* more */}
+        <div className="justify-center text-center dark:text-yellow-400 text-accent">
+          <Link href="/categories">
+            <p>Show More</p>
+          </Link>
+        </div>
+      </div>
+
+      {/* Recent Posts for Medium and Large Screens */}
+      <div className="hidden md:block mb-8">
+        <section>
+          <h2 className="text-3xl font-semibold mb-6">Recent Posts</h2>
+          <RecentPosts posts={recentPosts} />
+        </section>
+      </div>
     </main>
   );
 }
