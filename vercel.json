@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "api/**": {
+      "excludeFiles": "**/{.next,*.cache,node_modules,public,app}/**"
+    }
+  },
+  "outputDirectory": ".next",
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_ENV": "production"
+    }
+  }
+}
