@@ -158,7 +158,7 @@ function SearchOverlay({ closeSearch }) {
 
         {/* Prompt Message When No Search is Made */}
         {!text && (
-          <div className="mt-6 text-xl flex items-center justify-center text-center text-lg text-gray-950 dark:text-white">
+          <div className="mt-6 text-xl flex items-center justify-center text-center text-gray-950 dark:text-white">
             <span>
               What are you looking for?
               <EyeIcon className="inline-block ml-1" />
@@ -179,7 +179,7 @@ function SearchOverlay({ closeSearch }) {
           <div className="mt-6 flex items-center justify-center space-x-2 text-center text-gray-950 dark:text-white text-xl">
             <span>
               I will think about writing something like that in the future, but
-              I don't have it yet!
+              I don&#39;t have it yet!
               <FaceGrinIcon className="inline-block ml-1" />
             </span>
           </div>

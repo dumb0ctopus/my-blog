@@ -76,9 +76,9 @@ export default function TermsOfUse() {
             6. Disclaimer of Warranties
           </h2>
           <p>
-            The content on this blog is provided "as is" without warranties of
-            any kind. We make no guarantees as to the accuracy, completeness, or
-            timeliness of the information on our site.
+            The content on this blog is provided &#39;as is&#39; without
+            warranties of any kind. We make no guarantees as to the accuracy,
+            completeness, or timeliness of the information on our site.
           </p>
         </section>
 
