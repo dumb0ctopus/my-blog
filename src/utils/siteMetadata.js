@@ -5,7 +5,7 @@ const siteMetadata = {
   description: "A blog for short stories, poems and ideas",
   language: "en-us",
   theme: "system", // system, dark or light
-  siteUrl: "https://jesuloluwa.com", // your website URL
+  siteUrl: "https://jesu-loluwa.netlify.app", // your website URL
   siteLogo: "/logo.png",
   socialBanner: "/social-banner.png", // add social banner in the public folder
   email: "jesuloluwap@gmail.com",

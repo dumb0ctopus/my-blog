@@ -1,5 +1,5 @@
 const SunIcon = ({
-  height = "1em",
+  height = "1.7em",
   fill = "currentColor",
   focusable = "false",
   ...props

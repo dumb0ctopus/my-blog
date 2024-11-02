@@ -2,9 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* globals.css */
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
 
-html, body {
+html,
+body {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -12,9 +14,21 @@ html, body {
 }
 
 body {
+  font-family: "Merriweather", serif;
+  font-size: 1rem;
+  line-height: 1.6;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700; /* Bold headings for emphasis */
+}
+
+p, a, li, span {
+  font-family: 'Merriweather', serif; /* Consistent body text font */
 }
 
 /* Ensures header, main content, and footer are positioned correctly */
@@ -64,9 +78,9 @@ main {
 }
 
 ::-webkit-scrollbar-track {
-  background: #F0F0F0; /* Light gray track color for light mode */
+  background: #f0f0f0; /* Light gray track color for light mode */
   border-radius: 4px; /* Rounded corners of the track */
-  box-shadow: inset 0 0 5px #C6C6C6; /* Optional: adding some shadow inside the track */
+  box-shadow: inset 0 0 5px #c6c6c6; /* Optional: adding some shadow inside the track */
 }
 
 /* Dark mode scrollbar styling */
@@ -75,19 +89,19 @@ main {
 }
 
 .dark ::-webkit-scrollbar-track {
-  background: #2D3748; /* Dark gray track color for dark mode */
-  box-shadow: inset 0 0 5px #1A202C; /* Optional: darker shadow for the track */
+  background: #2d3748; /* Dark gray track color for dark mode */
+  box-shadow: inset 0 0 5px #1a202c; /* Optional: darker shadow for the track */
 }
 
 /* Firefox scrollbar styling */
 * {
   scrollbar-width: thin; /* "auto", "thin", or "none" */
-  scrollbar-color: #000000 #F0F0F0; /* Thumb and track color for light mode */
+  scrollbar-color: #000000 #f0f0f0; /* Thumb and track color for light mode */
 }
 
 /* Dark mode scrollbar styling for Firefox */
 .dark * {
-  scrollbar-color: #000000 #2D3748; /* Thumb and track color for dark mode */
+  scrollbar-color: #000000 #2d3748; /* Thumb and track color for dark mode */
 }
 
 /* Example class for a specific container with custom scrollbars */
@@ -104,7 +118,7 @@ main {
 }
 
 .my-custom-scrollbar::-webkit-scrollbar-track {
-  background: #C6F6D5; /* Light green track color for specific container */
+  background: #c6f6d5; /* Light green track color for specific container */
 }
 
 /* Dark mode styles for the specific container scrollbar */
@@ -113,7 +127,7 @@ main {
 }
 
 .dark .my-custom-scrollbar::-webkit-scrollbar-track {
-  background: #1A202C; /* Darker track color for dark mode */
+  background: #1a202c; /* Darker track color for dark mode */
 }
 
 @layer utilities {

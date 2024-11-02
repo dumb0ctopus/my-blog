@@ -80,7 +80,7 @@ export default function BlogPage({ params }) {
 
   return (
     <main className="container mx-auto px-4 sm:px-40 lg:px-72 py-8 mt-11">
-      <article className="text-gray-950 dark:text-white dark:bg-gray-950 p-6 rounded-lg shadow-lg">
+      <article className="text-gray-950 dark:text-white dark:bg-gray-950 p-6 rounded-lg">
         {/* Title Section */}
         <header className="mb-8 text-center">
           <h1 className="font-semibold capitalize text-3xl md:text-4xl lg:text-5xl leading-tight">

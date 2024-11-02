@@ -9,45 +9,81 @@ import TwitterIcon from "@/components/Icons/TwitterIcon";
 import LinkedInIcon from "@/components/Icons/LinkedInIcon";
 import GitHubIcon from "@/components/Icons/GitHubIcon";
 import ArrowIcon from "@/components/Icons/ArrowIcon";
-import SpinnerIcon from "@/components/Icons/SpinnerIcon";
 import CheckIcon from "@/components/Icons/CheckIcon";
+import useDarkMode from "@/components/Hooks/useDarkMode";
+import SearchOverlay from "@/components/SearchOverlay";
+import SearchIcon from "../Icons/SearchIcon";
+import SunIcon from "../Icons/SunIcon";
+import MoonIcon from "../Icons/MoonIcon";
+import Link from "next/link";
 
 function Footer() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     reset,
   } = useForm();
 
-  const [submissionStatus, setSubmissionStatus] = useState(null); // null, 'success', 'error'
+  const [submissionStatus, setSubmissionStatus] = useState(null);
   const [submissionMessage, setSubmissionMessage] = useState("");
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isDarkMode, toggleDarkMode] = useDarkMode();
 
-  const onSubmit = async (data) => {
-    try {
-      const response = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email: data.email }),
-      });
+  const onSubmit = (data) => {
+    const formData = new FormData();
+    formData.append("EMAIL", data.email);
 
-      const result = await response.json();
+    // Replace this URL with your actual Mailchimp form action URL
+    const actionUrl =
+      "https://gmail.us8.list-manage.com/subscribe/post?u=4b3133edf8aff0e46c5a1a108&amp;id=84a151cc93&amp;f_id=005159e1f0";
 
-      if (response.ok) {
-        setSubmissionStatus("success");
-        setSubmissionMessage(result.message);
-        reset(); // Reset the form upon successful submission
-      } else {
-        setSubmissionStatus("error");
-        setSubmissionMessage(result.message || "Subscription failed.");
-      }
-    } catch (error) {
-      console.error("Form submission error:", error);
-      setSubmissionStatus("error");
-      setSubmissionMessage("An unexpected error occurred. Please try again.");
-    }
+    // Create a new form element to handle the submission
+    const tempForm = document.createElement("form");
+    tempForm.action = actionUrl;
+    tempForm.method = "POST";
+    tempForm.target = "_blank"; // Opens submission in a new tab
+
+    // Add email field
+    formData.forEach((value, key) => {
+      const hiddenInput = document.createElement("input");
+      hiddenInput.type = "hidden";
+      hiddenInput.name = key;
+      hiddenInput.value = value;
+      tempForm.appendChild(hiddenInput);
+    });
+
+    // Add bot field (hidden)
+    const botField = document.createElement("input");
+    botField.type = "text";
+    botField.name = "b_4b3133edf8aff0e46c5a1a108_84a151cc93"; // Replace with your actual bot field name
+    botField.tabIndex = "-1";
+    botField.value = "";
+    botField.style.position = "absolute";
+    botField.style.left = "-5000px";
+    tempForm.appendChild(botField);
+
+    // Append the form to the document body and submit it
+    document.body.appendChild(tempForm);
+    tempForm.submit();
+    document.body.removeChild(tempForm);
+
+    // Provide feedback to the user
+    setSubmissionStatus("success");
+    setSubmissionMessage("Thank you for subscribing!");
+
+    // Reset the form
+    reset();
+  };
+
+  // Function to open the search overlay
+  const openSearch = () => {
+    setIsSearchOpen(true);
+  };
+
+  // Function to close the search overlay
+  const closeSearch = () => {
+    setIsSearchOpen(false);
   };
 
   return (
@@ -63,9 +99,13 @@ function Footer() {
             Subscribe to Our Newsletter
           </h3>
           <p className="text-sm sm:text-base mb-6">
-            Stay updated with the latest news and articles.
+            Get notified when we publish something new
           </p>
-          <form onSubmit={handleSubmit(onSubmit)} className="relative">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="relative"
+            noValidate
+          >
             <label htmlFor="email" className="sr-only">
               Email Address
             </label>
@@ -88,23 +128,23 @@ function Footer() {
               } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200 transition-colors duration-200`}
               aria-invalid={errors.email ? "true" : "false"}
               aria-describedby="email-error"
-              disabled={isSubmitting}
+              disabled={submissionStatus === "success"}
             />
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={submissionStatus === "success"}
               className="absolute inset-y-0 right-0 px-3 bg-gray-700 hover:bg-yellow-400 rounded flex items-center justify-center text-white hover:text-gray-700 transition-colors duration-200"
               aria-label="Subscribe"
             >
-              {isSubmitting ? (
-                <SpinnerIcon width="20" height="20" className="animate-spin" />
-              ) : (
-                <ArrowIcon
-                  width="20"
-                  height="20"
-                  className="transform hover:rotate-90 animate-pulse"
-                />
-              )}
+              <ArrowIcon
+                width="20"
+                height="20"
+                className={`transform ${
+                  submissionStatus === "success"
+                    ? "rotate-90"
+                    : "hover:rotate-90"
+                } transition-transform duration-200`}
+              />
             </button>
           </form>
           {errors.email && (
@@ -118,28 +158,20 @@ function Footer() {
               {submissionMessage}
             </div>
           )}
-          {submissionStatus === "error" && (
-            <div className="mt-2 flex items-center justify-center text-red-600 text-sm">
-              <svg
-                className="w-5 h-5 mr-2"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v4a1 1 0 102 0V7zm-1 8a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              {submissionMessage}
-            </div>
-          )}
         </div>
 
         {/* Social Media Links */}
         <div className="flex space-x-6 mt-8">
+          {/* Search Icon Button */}
+          {!isSearchOpen && (
+            <button
+              onClick={openSearch}
+              aria-label="Open Search"
+              className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white transition-colors duration-200"
+            >
+              <SearchIcon />
+            </button>
+          )}
           <a
             href={siteMetadata.github}
             target="_blank"
@@ -147,7 +179,7 @@ function Footer() {
             aria-label="GitHub"
             className="text-gray-600 hover:text-gray-800 transition-colors duration-200"
           >
-            <GitHubIcon width="24" height="24" />
+            <GitHubIcon />
           </a>
           <a
             href={siteMetadata.linkedin}
@@ -156,7 +188,7 @@ function Footer() {
             aria-label="LinkedIn"
             className="text-gray-600 hover:text-gray-800 transition-colors duration-200"
           >
-            <LinkedInIcon width="24" height="24" />
+            <LinkedInIcon />
           </a>
           <a
             href={siteMetadata.twitter}
@@ -165,26 +197,34 @@ function Footer() {
             aria-label="Twitter"
             className="text-gray-600 hover:text-gray-800 transition-colors duration-200"
           >
-            <TwitterIcon width="24" height="24" />
+            <TwitterIcon />
           </a>
+          {/* Dark Mode Toggle */}
+          <button
+            onClick={toggleDarkMode}
+            aria-label="Toggle Dark Mode"
+            className="animate-wobble ml-4"
+          >
+            {isDarkMode ? <SunIcon /> : <MoonIcon />}
+          </button>
         </div>
 
         {/* Additional Links */}
         <div className="flex space-x-4 mt-8 text-sm">
-          <a
+          <Link
             href="/privacy-policy"
             className="hover:text-blue-600 transition-colors duration-200"
           >
             Privacy Policy
-          </a>
-          <a
-            href="/terms-of-service"
+          </Link>
+          <Link
+            href="/terms-of-use"
             className="hover:text-blue-600 transition-colors duration-200"
           >
-            Terms of Service
-          </a>
+            Terms of Use
+          </Link>
           <a
-            href="/contact"
+            href="#"
             className="hover:text-blue-600 transition-colors duration-200"
           >
             Contact
@@ -198,6 +238,9 @@ function Footer() {
           </p>
         </div>
       </footer>
+
+      {/* Search Overlay */}
+      {isSearchOpen && <SearchOverlay closeSearch={closeSearch} />}
     </>
   );
 }

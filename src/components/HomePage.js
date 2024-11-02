@@ -1,4 +1,4 @@
-// src/pages/index.js or src/app/page.js (depending on your Next.js setup)
+// components/homepage.js
 import React from "react";
 import HomeCover from "@/components/HomeCover";
 import FeaturedPosts from "@/components/FeaturedPosts";
@@ -26,7 +26,7 @@ export default function HomePage(props) {
   const recentPosts = posts.slice(4);
 
   return (
-    <main className="container mx-auto p-4 mt-32">
+    <main className="container mx-auto p-4 mt-32 md:px-32 sm:px-14">
       {/* HomeCover Section */}
       <section className="mb-8">
         <HomeCover post={homecoverPost} />
@@ -40,7 +40,7 @@ export default function HomePage(props) {
             <FeaturedPosts posts={featuredPosts} />
           </section>
         </div>
-        <div className="max-w-sm w-full mt-11">
+        <div className="hidden max-w-sm w-full mt-11">
           <TogglePostsAndTags posts={posts} />
         </div>
       </div>
@@ -59,12 +59,6 @@ export default function HomePage(props) {
             <RecentPosts posts={recentPosts} />
           </section>
         </div>
-        {/* more */}
-        <div className="justify-center text-center dark:text-yellow-400 text-accent">
-          <Link href="/categories">
-            <p>Show More</p>
-          </Link>
-        </div>
       </div>
 
       {/* Recent Posts for Medium and Large Screens */}
@@ -74,6 +68,12 @@ export default function HomePage(props) {
           <RecentPosts posts={recentPosts} />
         </section>
       </div>
+        {/* more */}
+        <div className="justify-center text-center dark:text-yellow-400 text-accent">
+          <Link href="/categories">
+            <p>Show More</p>
+          </Link>
+        </div>
     </main>
   );
 }

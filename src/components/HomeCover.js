@@ -5,7 +5,7 @@ import slugify from "@/utils/slugify"; // Import slugify function
 
 export default function HomeCover({ post }) {
   return (
-    <article className="relative rounded-3xl overflow-hidden shadow-lg w-full max-w-[700px] mx-auto group">
+    <article className="relative rounded-3xl overflow-hidden w-full max-w-full mx-auto group">
       {/* Background Image wrapped in Link */}
       <Link href={`/blogs/${post.slug}`} className="block">
         <Image

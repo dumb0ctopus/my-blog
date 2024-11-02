@@ -47,6 +47,7 @@ export default function getPostMetadata(basePath = "src/blogs") {
         isPublished: matterResult.data.isPublished || false,
         tags: matterResult.data.tags || [],
         slug: filename.replace(".mdx", ""),
+        content: matterResult.content, // Include the body content
       };
     })
     .filter((post) => post !== null); // Remove null entries
