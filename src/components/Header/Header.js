@@ -49,7 +49,7 @@ const Header = () => {
           )}
 
           {/* Social Media Links */}
-          <div className="flex items-center space-x-4">
+          <div className="hidden sm:flex items-center space-x-4">
             <a
               href={siteMetadata.github}
               target="_blank"
