@@ -10,7 +10,7 @@ export default function FeaturedPosts({ posts }) {
       {posts.slice(0, 3).map((post) => (
         <div
           key={post.slug}
-          className="group flex flex-col sm:flex-row sm:items-center gap-3"
+          className="group flex flex-col sm:flex-row sm:items-center gap-3 sm:mx-0 mx-7"
         >
           {/* Image */}
           <Link

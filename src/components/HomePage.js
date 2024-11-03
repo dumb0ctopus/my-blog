@@ -3,7 +3,6 @@ import React from "react";
 import HomeCover from "@/components/HomeCover";
 import FeaturedPosts from "@/components/FeaturedPosts";
 import RecentPosts from "@/components/RecentPosts";
-import TogglePostsAndTags from "@/components/TogglePostsAndTags"; // Corrected import path
 import getPostMetadata from "@/utils/getPostMetadata";
 import Link from "next/link";
 
@@ -33,38 +32,19 @@ export default function HomePage(props) {
       </section>
 
       {/* Featured Posts and TogglePostsAndTags for Medium and Large Screens */}
-      <div className="hidden md:flex mb-8">
+      <div className="flex mb-5">
         <div className="flex-1">
-          <section className="mb-8">
-            <h2 className="text-3xl font-semibold mb-6">Featured Posts</h2>
+          <section className="mb-5">
+            <h2 className="text-3xl font-semibold mb-5 sm:mx-0 mx-7">Featured Posts</h2>
             <FeaturedPosts posts={featuredPosts} />
-          </section>
-        </div>
-        <div className="hidden max-w-sm w-full mt-11">
-          <TogglePostsAndTags posts={posts} />
-        </div>
-      </div>
-
-      {/* Featured Posts, Recent Posts, and TogglePostsAndTags for Small Screens */}
-      <div className="md:hidden flex flex-col space-y-8 mb-8">
-        <div>
-          <section className="mb-8">
-            <h2 className="text-3xl font-semibold mb-6">Featured Posts</h2>
-            <FeaturedPosts posts={featuredPosts} />
-          </section>
-        </div>
-        <div>
-          <section className="mb-8">
-            <h2 className="text-3xl font-semibold mb-6">Recent Posts</h2>
-            <RecentPosts posts={recentPosts} />
           </section>
         </div>
       </div>
 
       {/* Recent Posts for Medium and Large Screens */}
-      <div className="hidden md:block mb-8">
+      <div className="block mb-8">
         <section>
-          <h2 className="text-3xl font-semibold mb-6">Recent Posts</h2>
+          <h2 className="text-3xl font-semibold mb-5 mx-7 sm:mx-0">Recent Posts</h2>
           <RecentPosts posts={recentPosts} />
         </section>
       </div>

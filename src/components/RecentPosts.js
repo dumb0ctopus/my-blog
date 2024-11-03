@@ -11,7 +11,7 @@ export default function RecentPosts({ posts }) {
       {posts.map((post) => (
         <div
           key={post.slug}
-          className="group flex flex-col items-center text-dark dark:text-light"
+          className="group flex flex-col items-center text-dark dark:text-light mx-7 sm:mx-0"
         >
           {/* Image Link */}
           <Link

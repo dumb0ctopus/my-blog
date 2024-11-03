@@ -27,7 +27,7 @@ export default function AllCategoriesPage() {
         {/* All Button */}
         <Link
           href={`/categories`}
-          className={`px-4 py-2 rounded bg-accent dark:bg-accentDark text-light`}
+          className={`px-4 py-2 rounded bg-accent hover:bg-accentDark hover:text-dark dark:hover:text-white dark:hover:bg-accent dark:bg-accentDark dark:text-black text-light`}
         >
           #all
         </Link>

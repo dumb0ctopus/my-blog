@@ -154,3 +154,15 @@ main {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+/* Highlighted text */
+.highlight {
+  background-color: yellow; /* Adjust color as needed */
+  font-weight: bold;
+}
+
+/* Dark mode adjustments for highlighted text */
+.dark .highlight {
+  background-color: purple; /* Darker highlight for dark mode */
+  color: white;
+}

@@ -48,7 +48,7 @@ export default function CategoryPage({ params }) {
             href={`/categories/${slugify(tag)}`}
             className={`px-4 py-2 rounded ${
               slug === slugify(tag)
-                ? "bg-accent text-light"
+                ? "bg-accent hover:bg-accentDark dark:text-dark dark:hover:bg-accent dark:bg-accentDark text-light"
                 : "bg-gray-200 dark:bg-gray-700 text-dark dark:text-light"
             }`}
           >
