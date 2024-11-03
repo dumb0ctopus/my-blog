@@ -117,7 +117,8 @@ const About = () => {
                 },
                 {
                   name: "Epub Reader",
-                  description: "In progress. I'll continue to update the repo.",
+                  description:
+                    "In progress. I'll continue to update the repo.",
                   url: "https://github.com/dumb0ctopus/epubReader",
                 },
               ].map((project, index) => (
