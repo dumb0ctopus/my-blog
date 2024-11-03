@@ -2,21 +2,21 @@
 
 export default function TermsOfUse() {
   return (
-    <main className="flex items-center justify-center min-h-screen px-4 mt-5 mb-[500px] dark:bg-gray-950 dark:text-white">
-      <div className="max-w-3xl bg-white dark:bg-gray-950 p-8 rounded-lg text-gray-950 dark:text-gray-200 max-h-[80vh]">
-        <h1 className="text-3xl font-bold mb-6 text-center">
+    <main className="flex items-center justify-center px-4 mt-20 dark:bg-gray-950 dark:text-white">
+      <div className="max-w-3xl bg-white dark:bg-gray-950 p-8 rounded-lg text-gray-950 dark:text-gray-200">
+        <h1 className="sm:text-3xl text-lg font-bold mb-6 text-center">
           Terms of Service
         </h1>
 
         <section className="mb-4">
-          <p className="text-lg text-center">
+          <p className="sm:text-lg text-center">
             Welcome to our blog. By accessing or using our site, you agree to
             comply with these Terms of Service. Please read them carefully.
           </p>
         </section>
 
         <section className="mb-4">
-          <h2 className="text-2xl font-semibold mt-6 mb-2">
+          <h2 className="sm:text-2xl font-semibold mt-6 mb-2">
             1. Acceptance of Terms
           </h2>
           <p>
@@ -27,7 +27,7 @@ export default function TermsOfUse() {
         </section>
 
         <section className="mb-4">
-          <h2 className="text-2xl font-semibold mt-6 mb-2">
+          <h2 className="sm:text-2xl font-semibold mt-6 mb-2">
             2. Use of Content
           </h2>
           <p>
@@ -38,8 +38,8 @@ export default function TermsOfUse() {
           </p>
         </section>
 
-        <section className="mb-4">
-          <h2 className="text-2xl font-semibold mt-6 mb-2">3. User Conduct</h2>
+        <section className="sm:mb-4">
+          <h2 className="sm:text-2xl font-semibold mt-6 mb-2">3. User Conduct</h2>
           <p>
             You agree not to use this site to post or transmit any material that
             is unlawful, threatening, abusive, defamatory, or otherwise
@@ -49,7 +49,7 @@ export default function TermsOfUse() {
         </section>
 
         <section className="mb-4">
-          <h2 className="text-2xl font-semibold mt-6 mb-2">
+          <h2 className="sm:text-2xl font-semibold mt-6 mb-2">
             4. Intellectual Property
           </h2>
           <p>
@@ -61,7 +61,7 @@ export default function TermsOfUse() {
         </section>
 
         <section className="mb-4">
-          <h2 className="text-2xl font-semibold mt-6 mb-2">
+          <h2 className="sm:text-2xl font-semibold mt-6 mb-2">
             5. Third-Party Links
           </h2>
           <p>
@@ -72,7 +72,7 @@ export default function TermsOfUse() {
         </section>
 
         <section className="mb-4">
-          <h2 className="text-2xl font-semibold mt-6 mb-2">
+          <h2 className="sm:text-2xl font-semibold mt-6 mb-2">
             6. Disclaimer of Warranties
           </h2>
           <p>
@@ -83,7 +83,7 @@ export default function TermsOfUse() {
         </section>
 
         <section className="mb-4">
-          <h2 className="text-2xl font-semibold mt-6 mb-2">
+          <h2 className="sm:text-2xl font-semibold mt-6 mb-2">
             7. Limitation of Liability
           </h2>
           <p>
@@ -94,7 +94,7 @@ export default function TermsOfUse() {
         </section>
 
         <section className="mb-4">
-          <h2 className="text-2xl font-semibold mt-6 mb-2">
+          <h2 className="sm:text-2xl font-semibold mt-6 mb-2">
             8. Changes to Terms
           </h2>
           <p>
@@ -105,7 +105,7 @@ export default function TermsOfUse() {
         </section>
 
         <section className="mb-4">
-          <h2 className="text-2xl font-semibold mt-6 mb-2">9. Contact Us</h2>
+          <h2 className="sm:text-2xl font-semibold mt-6 mb-2">9. Contact Us</h2>
           <p>
             If you have any questions about these Terms of Service, please
             contact us at{" "}

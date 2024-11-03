@@ -205,7 +205,7 @@ function Footer() {
             aria-label="Toggle Dark Mode"
             className="animate-wobble ml-4"
           >
-            {isDarkMode ? <SunIcon /> : <MoonIcon />}
+            {!isDarkMode ? <MoonIcon /> : <SunIcon />}
           </button>
         </div>
 
@@ -215,19 +215,19 @@ function Footer() {
             href="/privacy-policy"
             className="hover:text-blue-600 transition-colors duration-200"
           >
-            Privacy Policy
+            Privacy
           </Link>
           <Link
             href="/terms-of-use"
             className="hover:text-blue-600 transition-colors duration-200"
           >
-            Terms of Use
+            Terms
           </Link>
           <a
-            href="#"
+            href="/about"
             className="hover:text-blue-600 transition-colors duration-200"
           >
-            Contact
+            About
           </a>
         </div>
 

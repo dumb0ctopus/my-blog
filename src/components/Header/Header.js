@@ -85,10 +85,10 @@ const Header = () => {
             aria-label="Toggle Dark Mode"
             className="animate-wobble ml-4"
           >
-            {isDarkMode ? (
-              <SunIcon />
-            ) : (
+            {!isDarkMode ? (
               <MoonIcon />
+            ) : (
+              <SunIcon />
             )}
           </button>
         </div>

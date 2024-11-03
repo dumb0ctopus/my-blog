@@ -11,7 +11,7 @@ const SunIcon = ({
     height={height}
     focusable={focusable}
     {...props}
-    className="hover:animate-wobble text-white"
+    className="transform transition-transform duration-300 hover:animate-wobble text-gray-950 dark:text-white"
   >
     <path
       fill={fill}
