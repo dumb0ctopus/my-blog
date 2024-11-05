@@ -1,5 +1,4 @@
 // src/pages/blog/[slug].jsx
-
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,15 +6,21 @@ import Markdown from "markdown-to-jsx";
 import getPostMetadata from "@/utils/getPostMetadata";
 import fs from "fs";
 import matter from "gray-matter";
-import RecentPosts from "@/components/RecentPosts"; // Import RecentPosts for Similar Posts
+import RecentPosts from "@/components/RecentPosts";
 import slugify from "@/utils/slugify";
 import { format } from "date-fns";
 
-/**
- * Function to fetch post content based on slug.
- * @param {string} slug - The slug of the post.
- * @returns {object} - An object containing post data and content.
- */
+// Custom date formatting for BC dates
+function formatCustomDate(publishedAt) {
+  if (typeof publishedAt === "string" && publishedAt.includes("BC")) {
+    const [yearBC, ...rest] = publishedAt.split(" ");
+    return `${yearBC} BC`;
+  } else {
+    return format(new Date(publishedAt), "dd, MMMM, yyyy");
+  }
+}
+
+// Fetch post content
 function getPostContent(slug) {
   const folder = "src/blogs/";
   const file = `${folder}${slug}.mdx`;
@@ -29,31 +34,11 @@ function getPostContent(slug) {
   return matterResult;
 }
 
-/**
- * Generate static paths for dynamic routing based on available slugs.
- */
-export const generateStaticParams = async () => {
-  const posts = getPostMetadata("src/blogs");
-  return posts.map((post) => ({ slug: post.slug }));
-};
-
-/**
- * Generate metadata for each blog post.
- * @param {object} param0 - Parameters containing slug.
- * @returns {object} - Metadata object.
- */
-export async function generateMetadata({ params }) {
-  const slug = params?.slug ? " | " + params.slug.replaceAll("-", " ") : "";
-  return {
-    title: `Jesuloluwa${slug}`,
-  };
+// Get author name or fallback if undefined
+function getAuthorName(author) {
+  return author || "Unknown Author"; // Fallback if author is missing
 }
 
-/**
- * BlogPage Component - Renders individual blog posts.
- * @param {object} props - Props containing route parameters.
- * @returns {JSX.Element} - The rendered blog page.
- */
 export default function BlogPage({ params }) {
   const slug = params.slug;
   const post = getPostContent(slug);
@@ -69,11 +54,8 @@ export default function BlogPage({ params }) {
 
   // Fetch all posts to determine similar posts
   const allPosts = getPostMetadata("src/blogs");
-
-  // Extract the first tag of the current post
   const primaryTag = post.data.tags[0] || "";
 
-  // Filter similar posts based on the primary tag, excluding the current post
   const similarPosts = allPosts.filter(
     (p) => p.slug !== slug && p.tags.includes(primaryTag)
   );
@@ -86,6 +68,9 @@ export default function BlogPage({ params }) {
           <h1 className="font-semibold capitalize text-3xl md:text-4xl lg:text-5xl leading-tight">
             {post.data.title}
           </h1>
+          <h3 className="text-gray-600 dark:text-gray-400 mt-2">
+            {getAuthorName(post.data.author)}
+          </h3>
         </header>
 
         {/* Blog Image */}
@@ -97,7 +82,7 @@ export default function BlogPage({ params }) {
               fill
               className="object-cover transition-transform duration-300 group-hover:scale-105"
               placeholder="blur"
-              blurDataURL="/placeholder.png" // Ensure you have a placeholder image
+              blurDataURL="/placeholder.png"
             />
           </div>
         )}
@@ -106,7 +91,7 @@ export default function BlogPage({ params }) {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8">
           {/* Published Date */}
           <span className="text-gray-500 dark:text-gray-300 text-sm sm:text-base">
-            {format(new Date(post.data.publishedAt), "MMMM dd, yyyy")}
+            {formatCustomDate(post.data.publishedAt)}
           </span>
 
           {/* Tag */}

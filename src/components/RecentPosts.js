@@ -5,6 +5,16 @@ import Link from "next/link";
 import { format } from "date-fns";
 import slugify from "@/utils/slugify";
 
+// Add the formatCustomDate function here or import it if defined in a separate file
+function formatCustomDate(publishedAt) {
+  if (typeof publishedAt === "string" && publishedAt.includes("BC")) {
+    const [yearBC, ...rest] = publishedAt.split(" ");
+    return `${yearBC} BC`;
+  } else {
+    return format(new Date(publishedAt), "dd, MMMM, yyyy");
+  }
+}
+
 export default function RecentPosts({ posts }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -50,9 +60,13 @@ export default function RecentPosts({ posts }) {
               </h2>
             </Link>
 
+            <span className="capitalize text-gray-500 dark:text-gray-300 font-semibold text-sm sm:text-base">
+              {post.author}
+            </span>
+
             {/* Date */}
             <span className="capitalize text-gray-500 dark:text-gray-300 font-semibold text-sm sm:text-base">
-              {format(new Date(post.publishedAt), "dd, MMMM, yyyy")}
+              {formatCustomDate(post.publishedAt)}
             </span>
           </div>
         </div>
