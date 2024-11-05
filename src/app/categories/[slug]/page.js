@@ -7,6 +7,16 @@ import slugify from "@/utils/slugify";
 import Image from "next/image";
 import { format } from "date-fns";
 
+  // Custom date formatting for BC dates
+  function formatCustomDate(publishedAt) {
+    if (typeof publishedAt === "string" && publishedAt.includes("BC")) {
+      const [yearBC, ...rest] = publishedAt.split(" ");
+      return `${yearBC} BC`;
+    } else {
+      return format(new Date(publishedAt), "dd, MMMM, yyyy");
+    }
+  }
+
 export default function CategoryPage({ params }) {
   const { slug } = params;
 
@@ -103,7 +113,7 @@ export default function CategoryPage({ params }) {
 
               {/* Date */}
               <span className="capitalize text-gray-500 dark:text-gray-300 font-semibold text-sm sm:text-base">
-                {format(new Date(post.publishedAt), "dd, MMMM, yyyy")}
+                {formatCustomDate(post.publishedAt)}
               </span>
             </div>
           </div>
