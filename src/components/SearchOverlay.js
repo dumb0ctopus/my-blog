@@ -6,20 +6,21 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import debounce from "lodash.debounce";
 import CloseIcon from "./Icons/CloseIcon";
 import TrashIcon from "./Icons/TrashIcon";
-import { FaSpinner } from "react-icons/fa"; // Spinner icon for loading
-import FaceGrinIcon from "./Icons/FaceGrinIcon"; // Ensure you have this icon
+import { FaSpinner } from "react-icons/fa";
+import FaceGrinIcon from "./Icons/FaceGrinIcon";
 import EyeIcon from "./Icons/EyeIcon";
-import Highlighter from "react-highlight-words"; // For highlighting matched words
-import stringSimilarity from "string-similarity"; // Import string-similarity library
+import Highlighter from "react-highlight-words"; 
+import stringSimilarity from "string-similarity"; 
+import { format } from "date-fns";
+
 
 function SearchOverlay({ closeSearch }) {
   const [filteredData, setFilteredData] = useState([]);
   const [text, setText] = useState("");
   const [blogData, setBlogData] = useState([]);
-  const [loading, setLoading] = useState(false); // Loading state
+  const [loading, setLoading] = useState(false); 
   const overlayRef = useRef(null);
 
-  // List of stop words to exclude from highlighting
   const stopWords = [
     "a",
     "an",
@@ -229,6 +230,23 @@ function SearchOverlay({ closeSearch }) {
     };
   }, [closeSearch]);
 
+  function isValidDate(date) {
+    return date instanceof Date && !isNaN(date);
+  }
+
+  function formatCustomDate(publishedAt) {
+    const date = new Date(publishedAt);
+    if (typeof publishedAt === "string" && publishedAt.includes("BC")) {
+      const [yearBC, ...rest] = publishedAt.split(" ");
+      return `${yearBC} BC`;
+    } else if (isValidDate(date)) {
+      return format(date, "dd, MMMM, yyyy");
+    } else {
+      return "Unknown date";
+    }
+  }
+
+
   return (
     <div className="fixed inset-0 z-50 sm:mt-20 mt-20 flex items-start justify-center lg:justify-end bg-black bg-opacity-50">
       {/* Search Box */}
@@ -395,14 +413,7 @@ function SearchOverlay({ closeSearch }) {
                       />
                     </p>
                     <span className="text-xs mt-1 block text-gray-500 dark:text-gray-400">
-                      {new Date(item.publishedAt).toLocaleDateString(
-                        undefined,
-                        {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        }
-                      )}
+                      {formatCustomDate(item.publishedAt)}
                     </span>
                   </a>
                 </div>

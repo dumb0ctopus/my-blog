@@ -1,17 +1,16 @@
-import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import { Inter, Merriweather } from "@next/font/google";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const inter = Inter({
+  weight: ["400", "700"],
+  subsets: ["latin"],
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const merriweather = Merriweather({
+  weight: ["400", "700"],
+  subsets: ["latin"],
 });
 
 export const metadata = {
@@ -27,15 +26,15 @@ export default function RootLayout({ children }) {
   );
 
   let footer = (
-    <header>
+    <footer>
       <Footer />
-    </header>
+    </footer>
   );
 
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-gray-950 dark:text-gray-100`}
+        className={`antialiased dark:bg-gray-950 dark:text-gray-100 ${inter.className}`}
       >
         {header}
         {children}

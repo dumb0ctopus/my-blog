@@ -1,10 +1,9 @@
-// src/app/blogs/[slug]/page.jsx
+// src/app/blogs/[slug]/chapter/[chapter]/page.jsx
 
 import React from "react";
 import fs from "fs";
 import matter from "gray-matter";
 import BlogContent from "@/components/BlogContent";
-import getPostMetadata from "@/utils/getPostMetadata";
 
 // Function to split the blog content into chapters based on <h1> tags.
 function splitContentIntoChapters(content) {
@@ -40,31 +39,18 @@ async function getPostContent(slug) {
   };
 }
 
-export default async function BlogPage({ params }) {
-  const slug = params.slug;
+export default async function BlogChapterPage({ params }) {
+  const { slug, chapter } = params;
   const post = await getPostContent(slug);
 
-  if (!post) {
+  // Handle case where post or chapter is not found
+  if (!post || !post.chapters[chapter - 1]) {
     return (
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <p className="text-center text-gray-500">Post not found.</p>
+        <p className="text-center text-gray-500">Chapter not found.</p>
       </main>
     );
   }
 
-  // Fetch all posts to determine similar posts
-  const allPosts = getPostMetadata();
-  const primaryTag = post.data.tags[0] || "";
-
-  const similarPosts = allPosts.filter(
-    (p) => p.slug !== slug && p.tags.includes(primaryTag)
-  );
-
-  return (
-    <BlogContent
-      post={post}
-      similarPosts={similarPosts}
-      chapter={post.chapters.length > 1 ? 1 : undefined}
-    />
-  );
+  return <BlogContent post={post} chapter={parseInt(chapter)} />;
 }
