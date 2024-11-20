@@ -16,6 +16,7 @@ import SearchIcon from "../Icons/SearchIcon";
 import SunIcon from "../Icons/SunIcon";
 import MoonIcon from "../Icons/MoonIcon";
 import Link from "next/link";
+import AboutIcon from "../Icons/AboutIcon";
 
 function Footer() {
   const {
@@ -160,9 +161,7 @@ function Footer() {
           )}
         </div>
 
-        {/* Social Media Links */}
         <div className="flex space-x-6 mt-8">
-          {/* Search Icon Button */}
           {!isSearchOpen && (
             <button
               onClick={openSearch}
@@ -172,6 +171,15 @@ function Footer() {
               <SearchIcon />
             </button>
           )}
+
+          <Link
+            href="/about"
+            aria-label="About"
+            className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white transition-colors duration-200"
+          >
+            <AboutIcon />
+          </Link>
+
           <a
             href={siteMetadata.github}
             target="_blank"

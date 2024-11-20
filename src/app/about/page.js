@@ -82,7 +82,7 @@ const About = () => {
               >
                 Hello, I&#39;m <span className="text-blue-600">Jesuloluwa</span>
               </h1>
-              <p className="text-2xl sm:text-lg text-gray-700 mb-6 leading-relaxed dark:bg-gray-950 dark:text-white">
+              <p className="text-lg sm:text-2xl text-gray-700 mb-6 leading-relaxed dark:bg-gray-950 dark:text-white">
                 I'm a developer dedicated to crafting creative, dynamic web
                 experiences that are both intuitive and memorable. My passion
                 lies in building scalable solutions that address real-world
@@ -256,7 +256,7 @@ const About = () => {
           content="Developer, Blogger, and Open Source Contributor. Explore my projects and blog."
         />
         <meta property="og:image" content="/images/og-image.png" />
-        <meta property="og:url" content="https://yourdomain.com/about" />
+        <meta property="og:url" content="https://jesuloluwa.com/about" />
         <meta property="og:type" content="website" />
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -275,7 +275,7 @@ const About = () => {
               "@type": "Person",
               name: "Jesuloluwa",
               jobTitle: "Web Developer",
-              url: "https://yourdomain.com/about",
+              url: "https://jesuloluwa.com/about",
               sameAs: [
                 siteMetadata.github,
                 siteMetadata.linkedin,

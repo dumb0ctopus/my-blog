@@ -59,7 +59,7 @@ export default function AllCategoriesPage() {
         <meta property="og:url" content="https://www.jesuloluwa.com/categories" />
         <meta
           property="og:image"
-          content="https://www.jesuloluwa.com/og-image.jpg"
+          content="https://www.jesuloluwa.com/og-image.png"
         />
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -70,7 +70,7 @@ export default function AllCategoriesPage() {
         />
         <meta
           name="twitter:image"
-          content="https://www.jesuloluwa.com/twitter-image.jpg"
+          content="https://www.jesuloluwa.com/twitter-image.png"
         />
         {/* Structured Data */}
         <script

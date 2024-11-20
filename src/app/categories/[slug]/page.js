@@ -72,7 +72,7 @@ export default function CategoryPage({ params }) {
         />
         <meta
           property="og:image"
-          content="https://www.jesuloluwa.com/og-image-category.jpg"
+          content="https://www.jesuloluwa.com/og-image.png"
         />
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -86,7 +86,7 @@ export default function CategoryPage({ params }) {
         />
         <meta
           name="twitter:image"
-          content="https://www.jesuloluwa.com/twitter-image-category.jpg"
+          content="https://www.jesuloluwa.com/twitter-image.png"
         />
         {/* Structured Data */}
         <script

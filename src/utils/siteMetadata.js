@@ -10,7 +10,7 @@ const siteMetadata = {
   socialBanner: "/social-banner.png", // add social banner in the public folder
   email: "mailto:jesuloluwap@gmail.com",
   github: "https://github.com/dumb0ctopus",
-  twitter: "https://x.com/dumb0ctopus",
+  twitter: "https://x.com/jesul0luwa",
   linkedin: "https://linkedin.com/in/jesuloluwa-solanke-3a8b27122",
   locale: "en-US",
 };

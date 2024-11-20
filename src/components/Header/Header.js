@@ -13,6 +13,8 @@ import MoonIcon from "@/components/Icons/MoonIcon";
 import useDarkMode from "@/components/Hooks/useDarkMode";
 import SearchOverlay from "@/components/SearchOverlay";
 import SearchIcon from "../Icons/SearchIcon";
+import AboutIcon from "../Icons/AboutIcon";
+import Link from "next/link";
 
 const Header = () => {
   const [isDarkMode, toggleDarkMode] = useDarkMode();
@@ -47,6 +49,14 @@ const Header = () => {
               <SearchIcon size={19} />
             </button>
           )}
+
+          <Link
+            href="/about"
+            aria-label="About"
+            className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white transition-colors duration-200"
+          >
+            <AboutIcon />
+          </Link>
 
           {/* Social Media Links */}
           <div className="hidden sm:flex items-center space-x-4">
@@ -85,11 +95,7 @@ const Header = () => {
             aria-label="Toggle Dark Mode"
             className="animate-wobble ml-4"
           >
-            {!isDarkMode ? (
-              <MoonIcon />
-            ) : (
-              <SunIcon />
-            )}
+            {!isDarkMode ? <MoonIcon /> : <SunIcon />}
           </button>
         </div>
       </header>

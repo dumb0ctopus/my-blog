@@ -31,7 +31,7 @@ export default function HomePage(props) {
           <meta property="og:url" content="https://www.jesuloluwa.com/" />
           <meta
             property="og:image"
-            content="https://www.yourblog.com/og-image.jpg"
+            content="https://www.jesuloluwa.com/og-image.png"
           />
           {/* Twitter Card Meta Tags */}
           <meta name="twitter:card" content="summary_large_image" />
@@ -42,7 +42,7 @@ export default function HomePage(props) {
           />
           <meta
             name="twitter:image"
-            content="https://www.yourblog.com/twitter-image.jpg"
+            content="https://www.jesuloluwa.com/og-image.png"
           />
         </Head>
         <main className="container mx-auto p-4 mt-32">
@@ -122,7 +122,7 @@ export default function HomePage(props) {
         <meta property="og:url" content="https://www.jesuloluwa.com/" />
         <meta
           property="og:image"
-          content="https://www.jesuloluwa.com/og-image.jpg"
+          content="https://www.jesuloluwa.com/og-image.png"
         />
         {/* Twitter Card Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -133,7 +133,7 @@ export default function HomePage(props) {
         />
         <meta
           name="twitter:image"
-          content="https://www.jesuloluwa.com/twitter-image.jpg"
+          content="https://www.jesuloluwa.com/og-image.png"
         />
 
         {/* Structured Data */}
