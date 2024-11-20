@@ -1,4 +1,3 @@
-// app/categories/page.js
 import React from "react";
 import Link from "next/link";
 import Head from "next/head";
@@ -44,7 +43,7 @@ export default function AllCategoriesPage() {
   return (
     <>
       <Head>
-        <title>All Blogs - Jesuloluwa</title>
+        <title>All Blogs | Jesuloluwa</title>
         <meta
           name="description"
           content="Browse all blog posts across various categories."
@@ -59,18 +58,18 @@ export default function AllCategoriesPage() {
         <meta property="og:url" content="https://www.jesuloluwa.com/categories" />
         <meta
           property="og:image"
-          content="https://www.jesuloluwa.com/og-image.png"
+          content={`https://www.jesuloluwa.com/images/og-image.png`}
         />
         {/* Twitter Card Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="All Blogs - Your Site Name" />
+        <meta name="twitter:card" content="images/og-image.png" />
+        <meta name="twitter:title" content="All Blogs - Jesuloluwa" />
         <meta
           name="twitter:description"
-          content="Browse all blog posts across various categories on Your Site Name."
+          content="Browse all blog posts across various categories on jesuloluwa.com."
         />
         <meta
           name="twitter:image"
-          content="https://www.jesuloluwa.com/twitter-image.png"
+          content="https://www.jesuloluwa.com/images/og-image.png"
         />
         {/* Structured Data */}
         <script

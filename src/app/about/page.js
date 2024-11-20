@@ -11,7 +11,6 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
-import img from "../../../public/images/profileImg.png";
 import siteMetadata from "@/utils/siteMetadata";
 
 const myBlog = "/images/";
@@ -62,7 +61,7 @@ const About = () => {
               className="relative w-full md:w-1/2 max-w-md"
             >
               <Image
-                src={img} // Profile image imported statically
+                src="/images/profileImg.png"
                 alt="Jesuloluwa's Profile Picture"
                 width={400}
                 height={400}
@@ -255,7 +254,7 @@ const About = () => {
           property="og:description"
           content="Developer, Blogger, and Open Source Contributor. Explore my projects and blog."
         />
-        <meta property="og:image" content="/images/og-image.png" />
+        <meta property="og:image" content="images/og-image.png" />
         <meta property="og:url" content="https://jesuloluwa.com/about" />
         <meta property="og:type" content="website" />
         {/* Twitter Card Tags */}

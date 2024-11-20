@@ -4,10 +4,10 @@ const siteMetadata = {
   headerTitle: "Next.js Blog",
   description: "A blog for short stories, poems and ideas",
   language: "en-us",
-  theme: "system", // system, dark or light
-  siteUrl: "https://jesu-loluwa.netlify.app", // your website URL
+  theme: "system",
+  siteUrl: "https://jesuloluwa.com",
   siteLogo: "/logo.png",
-  socialBanner: "/social-banner.png", // add social banner in the public folder
+  socialBanner: "/social-banner.png",
   email: "mailto:jesuloluwap@gmail.com",
   github: "https://github.com/dumb0ctopus",
   twitter: "https://x.com/jesul0luwa",
