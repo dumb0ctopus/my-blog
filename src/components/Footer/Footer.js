@@ -97,10 +97,10 @@ function Footer() {
         {/* Newsletter Section */}
         <div className="w-full max-w-md text-center">
           <h3 className="text-xl sm:text-2xl font-semibold mb-4">
-            Subscribe to Our Newsletter
+            Subscribe to My Newsletter
           </h3>
-          <p className="text-sm sm:text-base mb-6">
-            Get notified when we publish something new
+          <p className="text-lg mb-6">
+            Get notified when something new is publish
           </p>
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -122,7 +122,7 @@ function Footer() {
                   message: "Please enter a valid email address.",
                 },
               })}
-              className={`w-full px-4 py-2 border ${
+              className={`w-full px-4 py-2 border dark:text-black ${
                 errors.email
                   ? "border-red-500"
                   : "border-gray-300 focus:border-blue-500"

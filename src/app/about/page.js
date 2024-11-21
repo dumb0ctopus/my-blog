@@ -1,6 +1,8 @@
+// components/About.js
+
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Head from "next/head";
 import {
@@ -9,6 +11,11 @@ import {
   FaEnvelope,
   FaArrowUp,
   FaTwitter,
+  FaChevronLeft,
+  FaChevronRight,
+  FaUser,
+  FaProjectDiagram,
+  FaAddressBook,
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import siteMetadata from "@/utils/siteMetadata";
@@ -18,6 +25,8 @@ const myBlog = "/images/";
 const About = () => {
   const [activeSection, setActiveSection] = useState("About");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
+  const projectsContainerRef = useRef(null);
 
   // Handle scroll to toggle shadow in header
   useEffect(() => {
@@ -40,6 +49,60 @@ const About = () => {
     visible: { opacity: 1, y: 0 },
   };
 
+  // Projects data
+  const projects = [
+    {
+      name: "My Blog Site",
+      description: "A creative way to write",
+      url: "https://github.com/dumb0ctopus/my-blog",
+      image: `${myBlog}project1.png`,
+    },
+    {
+      name: "A Search Tool",
+      description: "I'm using a tweaked version for my blog.",
+      url: "https://github.com/dumb0ctopus/searchTool",
+      image: `${myBlog}project2.png`,
+    },
+    {
+      name: "Epub Reader",
+      description: "In progress. I'll continue to update the repo.",
+      url: "https://github.com/dumb0ctopus/epubReader",
+      image: `${myBlog}project3.png`,
+    },
+  ];
+
+  // Handle project container scroll
+  useEffect(() => {
+    const container = projectsContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const scrollLeft = container.scrollLeft;
+      const containerWidth = container.offsetWidth;
+      const totalScrollWidth = container.scrollWidth - containerWidth;
+      const index = Math.round(
+        (scrollLeft / totalScrollWidth) * (projects.length - 1)
+      );
+      setCurrentProjectIndex(index);
+    };
+
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, [projects.length]);
+
+  // Scroll to a specific project
+  const scrollToProject = (index) => {
+    const container = projectsContainerRef.current;
+    if (!container) return;
+
+    const projectCardWidth = container.offsetWidth * 0.8; // Adjust based on your card width
+    container.scrollTo({
+      left: projectCardWidth * index,
+      behavior: "smooth",
+    });
+    setCurrentProjectIndex(index);
+  };
+
   const renderSection = () => {
     switch (activeSection) {
       case "About":
@@ -51,7 +114,7 @@ const About = () => {
             exit="hidden"
             variants={variants}
             transition={{ duration: 0.8 }}
-            className="flex flex-col md:flex-row items-center justify-center text-center md:text-left space-y-8 md:space-y-0 md:space-x-16 py-16 md:py-32 dark:bg-gray-950 dark:text-white"
+            className="flex flex-col lg:flex-row items-center justify-center text-center md:text-left space-y-8 lg:space-y-0 md:space-x-16 py-16 md:py-32 dark:bg-gray-950 dark:text-white"
             aria-labelledby="about-heading"
           >
             <motion.div
@@ -61,11 +124,11 @@ const About = () => {
               className="relative w-full md:w-1/2 max-w-md"
             >
               <Image
-                src="/images/profileImg.png"
+                src="/images/myImg.jpg"
                 alt="Jesuloluwa's Profile Picture"
                 width={400}
                 height={400}
-                className="rounded-lg shadow-xl transform hover:rotate-1 transition-all duration-500"
+                className="rounded-lg shadow-xl transform hover:rotate-3 transition-all duration-500"
                 priority
               />
             </motion.div>
@@ -73,15 +136,16 @@ const About = () => {
               initial={{ x: 100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 1 }}
-              className="md:w-1/2 max-w-2xl px-6"
+              className="lg:w-1/2 max-w-2xl px-5"
             >
               <h1
                 id="about-heading"
-                className="text-6xl font-extrabold mb-6 text-gray-900 leading-tight dark:bg-gray-950 dark:text-white"
+                className="sm:text-6xl text-5xl font-extrabold mb-6 text-gray-900 leading-tight dark:bg-gray-950 dark:text-white"
               >
-                Hello, I&#39;m <span className="text-blue-600">Jesuloluwa</span>
+                <span className="block">Hello,</span> I&#39;m
+                <span className="text-blue-600 mx-3">Jesuloluwa</span>
               </h1>
-              <p className="text-lg sm:text-2xl text-gray-700 mb-6 leading-relaxed dark:bg-gray-950 dark:text-white">
+              <p className="text-xl sm:text-2xl text-gray-700 leading-relaxed dark:bg-gray-950 dark:text-white text-justify">
                 I'm a developer dedicated to crafting creative, dynamic web
                 experiences that are both intuitive and memorable. My passion
                 lies in building scalable solutions that address real-world
@@ -103,7 +167,7 @@ const About = () => {
             exit="hidden"
             variants={variants}
             transition={{ duration: 0.8 }}
-            className="overflow-hidden py-20 dark:bg-gray-950 dark:text-white"
+            className="relative py-20 dark:bg-gray-950 dark:text-white"
             aria-labelledby="projects-heading"
           >
             <h2
@@ -112,58 +176,85 @@ const About = () => {
             >
               Projects
             </h2>
-            <div className="flex space-x-8 overflow-x-scroll scrollbar-hidden p-6 snap-x snap-mandatory dark:bg-gray-950 dark:text-white">
-              {[
-                {
-                  name: "My Blog Site",
-                  description: "A creative way to write",
-                  url: "https://github.com/dumb0ctopus/my-blog",
-                  image: `${myBlog}project1.png`,
-                },
-                {
-                  name: "A Search Tool",
-                  description: "I'm using a tweaked version for my blog.",
-                  url: "https://github.com/dumb0ctopus/searchTool",
-                  image: `${myBlog}project2.png`,
-                },
-                {
-                  name: "Epub Reader",
-                  description: "In progress. I'll continue to update the repo.",
-                  url: "https://github.com/dumb0ctopus/epubReader",
-                  image: `${myBlog}project3.png`,
-                },
-              ].map((project, index) => (
-                <motion.article
-                  key={index}
-                  whileHover={{ scale: 1.05 }}
-                  className="bg-white rounded-lg shadow-xl snap-center p-6 min-w-[300px] transform transition-transform duration-300 hover:scale-105 dark:bg-gray-600 dark:text-white"
-                  aria-labelledby={`project-${index}-title`}
+
+            {/* Projects Container */}
+            <div className="relative">
+              {/* Left Arrow */}
+              {currentProjectIndex > 0 && (
+                <button
+                  onClick={() => scrollToProject(currentProjectIndex - 1)}
+                  className="absolute left-2 top-1/2 transform -translate-y-1/2 p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg z-10"
+                  aria-label="Previous Project"
                 >
-                  <Image
-                    src={project.image} // Correctly referencing images in the public/images directory
-                    alt={`${project.name} Screenshot`}
-                    width={300}
-                    height={200}
-                    className="w-full h-48 object-cover rounded-md mb-4"
-                  />
-                  <h3
-                    id={`project-${index}-title`}
-                    className="text-2xl font-bold text-gray-800 mb-2 dark:text-white"
+                  <FaChevronLeft size={24} />
+                </button>
+              )}
+
+              {/* Projects Cards */}
+              <div
+                ref={projectsContainerRef}
+                className="flex space-x-8 overflow-x-scroll scrollbar-hidden p-6 snap-x snap-mandatory dark:bg-gray-950 dark:text-white"
+              >
+                {projects.map((project, index) => (
+                  <motion.article
+                    key={index}
+                    whileHover={{ scale: 1.05 }}
+                    className="bg-white rounded-lg shadow-xl snap-center p-6 min-w-[80%] sm:min-w-[300px] transform transition-transform duration-300 hover:scale-105 dark:bg-gray-600 dark:text-white"
+                    aria-labelledby={`project-${index}-title`}
                   >
-                    {project.name}
-                  </h3>
-                  <p className="text-lg text-gray-600 mb-4 dark:text-white">
-                    {project.description}
-                  </p>
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:underline dark:text-white"
-                  >
-                    View on GitHub
-                  </a>
-                </motion.article>
+                    <Image
+                      src={project.image}
+                      alt={`${project.name} Screenshot`}
+                      width={600}
+                      height={400}
+                      className="w-full h-48 object-cover rounded-md mb-4"
+                    />
+                    <h3
+                      id={`project-${index}-title`}
+                      className="text-2xl font-bold text-gray-800 mb-2 dark:text-white"
+                    >
+                      {project.name}
+                    </h3>
+                    <p className="text-lg text-gray-600 mb-4 dark:text-white">
+                      {project.description}
+                    </p>
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline dark:text-blue-400"
+                    >
+                      View on GitHub
+                    </a>
+                  </motion.article>
+                ))}
+              </div>
+
+              {/* Right Arrow */}
+              {currentProjectIndex < projects.length - 1 && (
+                <button
+                  onClick={() => scrollToProject(currentProjectIndex + 1)}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg z-10"
+                  aria-label="Next Project"
+                >
+                  <FaChevronRight size={24} />
+                </button>
+              )}
+            </div>
+
+            {/* Carousel Indicators */}
+            <div className="flex justify-center mt-8 space-x-2">
+              {projects.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => scrollToProject(index)}
+                  className={`w-3 h-3 rounded-full ${
+                    currentProjectIndex === index
+                      ? "bg-blue-600"
+                      : "bg-gray-400 dark:bg-gray-600"
+                  }`}
+                  aria-label={`Go to project ${index + 1}`}
+                ></button>
               ))}
             </div>
           </motion.main>
@@ -254,7 +345,10 @@ const About = () => {
           property="og:description"
           content="Developer, Blogger, and Open Source Contributor. Explore my projects and blog."
         />
-        <meta property="og:image" content="images/og-image.png" />
+        <meta
+          property="og:image"
+          content={`${siteMetadata.siteUrl}/images/og-image.png`}
+        />
         <meta property="og:url" content="https://jesuloluwa.com/about" />
         <meta property="og:type" content="website" />
         {/* Twitter Card Tags */}
@@ -264,7 +358,10 @@ const About = () => {
           name="twitter:description"
           content="Developer, Blogger, and Open Source Contributor. Explore my projects and blog."
         />
-        <meta name="twitter:image" content="/images/twitter-image.png" />
+        <meta
+          name="twitter:image"
+          content={`${siteMetadata.siteUrl}/images/twitter-image.png`}
+        />
         {/* Structured Data */}
         <script
           type="application/ld+json"
@@ -280,7 +377,7 @@ const About = () => {
                 siteMetadata.linkedin,
                 siteMetadata.twitter,
               ],
-              image: "/images/profileImg.png",
+              image: `${siteMetadata.siteUrl}/images/profileImg.png`,
               description:
                 "I'm a developer dedicated to crafting creative, dynamic web experiences. Explore my projects and blog.",
             }),
@@ -291,17 +388,17 @@ const About = () => {
       <div className="bg-white transition-colors duration-500 dark:bg-gray-950 dark:text-white">
         {/* Sticky Header */}
         <header
-          className={`fixed hidden md:flex top-32 left-0 right-0 z-50 transition-transform duration-500 ${
+          className={`fixed hidden md:flex top-0 left-0 right-0 z-50 transition-transform duration-500 ${
             isScrolled
-              ? "transform -translate-y-0 bg-opacity-95 text-white"
-              : "transform translate-y-0 bg-transparent"
+              ? "bg-opacity-95 text-white shadow-lg bg-white dark:bg-gray-950"
+              : "bg-transparent"
           }`}
           role="banner"
         >
-          <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+          <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center mt-20">
             {/* Navigation */}
             <nav
-              className="flex md:flex-row bg-white p-5 rounded space-x-6"
+              className="flex space-x-6 p-5 rounded"
               aria-label="Primary Navigation"
             >
               {["About", "Projects", "Contact"].map((section) => (
@@ -310,8 +407,8 @@ const About = () => {
                   onClick={() => setActiveSection(section)}
                   className={`text-xl font-semibold transition-transform duration-300 transform hover:scale-105 ${
                     activeSection === section
-                      ? "text-blue-900 border-b-2 border-white"
-                      : "hover:text-blue-500 text-black"
+                      ? "text-blue-600 border-b-2 border-blue-600"
+                      : "hover:text-blue-500 text-black dark:text-white"
                   }`}
                   aria-current={activeSection === section ? "page" : undefined}
                 >
@@ -323,7 +420,7 @@ const About = () => {
         </header>
 
         {/* Main Content */}
-        <main className="pt-28 container mx-auto px-6">
+        <main className="pt-28 max-w-7xl mx-auto px-6">
           <AnimatePresence mode="wait">{renderSection()}</AnimatePresence>
         </main>
 
@@ -353,22 +450,25 @@ const About = () => {
           aria-label="Mobile Navigation"
         >
           <div className="flex justify-around py-4">
-            {["About", "Projects", "Contact"].map((section) => (
+            {[
+              { name: "About", icon: <FaUser size={20} /> },
+              { name: "Projects", icon: <FaProjectDiagram size={20} /> },
+              { name: "Contact", icon: <FaAddressBook size={20} /> },
+            ].map((section) => (
               <button
-                key={section}
-                onClick={() => setActiveSection(section)}
+                key={section.name}
+                onClick={() => setActiveSection(section.name)}
                 className={`flex flex-col items-center text-sm font-medium transition-transform duration-300 transform hover:scale-110 ${
-                  activeSection === section
+                  activeSection === section.name
                     ? "text-blue-600"
                     : "text-gray-700 hover:text-blue-600 dark:text-white"
                 }`}
-                aria-current={activeSection === section ? "page" : undefined}
+                aria-current={
+                  activeSection === section.name ? "page" : undefined
+                }
               >
-                {/* Replace with appropriate icons */}
-                {section === "About" && <FaEnvelope size={20} />}
-                {section === "Projects" && <FaGithub size={20} />}
-                {section === "Contact" && <FaLinkedin size={20} />}
-                <span>{section}</span>
+                {section.icon}
+                <span>{section.name}</span>
               </button>
             ))}
           </div>

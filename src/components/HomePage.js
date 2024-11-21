@@ -142,7 +142,7 @@ export default function HomePage(props) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </Head>
-      <main className="container mx-auto p-4 mt-32 md:px-32 sm:px-14">
+      <main className="max-w-7xl mx-auto p-4 mt-32 md:px-32 sm:px-14">
         {/* HomeCover Section */}
         <section className="mb-8">
           <HomeCover post={homecoverPost} />
