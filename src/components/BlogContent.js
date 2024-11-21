@@ -194,7 +194,7 @@ export default function BlogContent({ post, chapter, similarPosts }) {
                   p: {
                     component: ({ children }) => (
                       <p
-                        className={`leading-relaxed mb-3 text-lg md:text-xl ${inter.className}`}
+                        className={`leading-relaxed mb-3 text-sm md:text-lg ${inter.className}`}
                       >
                         {children}
                       </p>
