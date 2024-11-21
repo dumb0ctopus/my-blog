@@ -39,7 +39,7 @@ const Logo = () => {
         <motion.span
           variants={textVariants}
           whileHover="hover"
-          className={`font-bold dark:font-semibold text-xl bg-gradient-to-r from-gray-950 dark:from-slate-200 to-green-900 dark:to-cyan-500 text-transparent bg-clip-text text-center md:text-left`}
+          className={`font-bold dark:font-semibold sm:text-xl text-lg bg-gradient-to-r from-gray-950 dark:from-slate-200 to-green-900 dark:to-cyan-500 text-transparent bg-clip-text text-center md:text-left`}
         >
           {isHomePage ? "Jesuloluwa" : "Back to Home"}
         </motion.span>

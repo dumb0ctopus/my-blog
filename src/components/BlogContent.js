@@ -151,7 +151,7 @@ export default function BlogContent({ post, chapter, similarPosts }) {
 
         <article className="text-gray-950 dark:text-white dark:bg-gray-950 p-6 rounded-lg">
           <header className="mb-8 text-center">
-            <h1 className="font-semibold capitalize text-xl md:text-2xl lg:text-3xl leading-tight">
+            <h1 className="font-semibold capitalize text-lg md:text-2xl lg:text-3xl leading-tight">
               {post.data.title}
             </h1>
             <h3 className="text-gray-600 dark:text-gray-400 mt-2">
