@@ -167,7 +167,7 @@ const About = () => {
             exit="hidden"
             variants={variants}
             transition={{ duration: 0.8 }}
-            className="relative py-20 dark:bg-gray-950 dark:text-white"
+            className="relative py-20 dark:bg-gray-950 dark:text-white overflow-x-hidden"
             aria-labelledby="projects-heading"
           >
             <h2
@@ -193,13 +193,13 @@ const About = () => {
               {/* Projects Cards */}
               <div
                 ref={projectsContainerRef}
-                className="flex space-x-8 overflow-x-scroll scrollbar-hidden p-6 snap-x snap-mandatory dark:bg-gray-950 dark:text-white"
+                className="flex space-x-8 overflow-x-scroll scrollbar-hidden py-6 snap-x snap-mandatory dark:bg-gray-950 dark:text-white"
               >
                 {projects.map((project, index) => (
                   <motion.article
                     key={index}
                     whileHover={{ scale: 1.05 }}
-                    className="bg-white rounded-lg shadow-xl snap-center p-6 min-w-[80%] sm:min-w-[300px] transform transition-transform duration-300 hover:scale-105 dark:bg-gray-600 dark:text-white"
+                    className="bg-white rounded-lg shadow-xl snap-center py-5 px-3 min-w-[90%] sm:min-w-[300px] transform transition-transform duration-300 hover:scale-105 dark:bg-gray-600 dark:text-white"
                     aria-labelledby={`project-${index}-title`}
                   >
                     <Image
@@ -215,7 +215,7 @@ const About = () => {
                     >
                       {project.name}
                     </h3>
-                    <p className="text-lg text-gray-600 mb-4 dark:text-white">
+                    <p className="sm:text-lg text-sm text-gray-600 mb-4 dark:text-white">
                       {project.description}
                     </p>
                     <a
@@ -446,7 +446,7 @@ const About = () => {
 
         {/* Mobile Navigation Buttons */}
         <nav
-          className="fixed bottom-0 left-0 right-0 bg-white z-50 shadow-t-md md:hidden dark:bg-gray-950 dark:text-white"
+          className="fixed bottom-0 left-0 right-0 bg-white z-50 shadow-t-md md:hidden dark:bg-gray-950 dark:text-white overflow-x-hidden"
           aria-label="Mobile Navigation"
         >
           <div className="flex justify-around py-4">
