@@ -145,7 +145,7 @@ const About = () => {
                 <span className="block">Hello,</span> I&#39;m
                 <span className="text-blue-600 mx-3">Jesuloluwa</span>
               </h1>
-              <p className="text-xl sm:text-2xl text-gray-700 leading-relaxed dark:bg-gray-950 dark:text-white text-justify">
+              <p className="text-lg sm:text-xl text-gray-700 leading-relaxed dark:bg-gray-950 dark:text-white">
                 I'm a developer dedicated to crafting creative, dynamic web
                 experiences that are both intuitive and memorable. My passion
                 lies in building scalable solutions that address real-world
