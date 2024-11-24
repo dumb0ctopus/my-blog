@@ -1,5 +1,3 @@
-// next-sitemap.config.js
-
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: "https://www.jesuloluwa.com",
@@ -7,11 +5,9 @@ module.exports = {
   robotsTxtOptions: {
     policies: [
       {
-        userAgent: "*",
-        allow: "/",
+        userAgent: "*", // All user agents
+        allow: "/", // Allow all pages
       },
-      // Add more policies if needed
     ],
-    additionalSitemaps: ["https://www.jesuloluwa.com/sitemap.xml"], // Path to your sitemap
   },
 };

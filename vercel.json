@@ -1,8 +1,0 @@
-{
-  "framework": "nextjs",
-  "functions": {
-    "src/app/api/**": {
-      "excludeFiles": "**/{.next,*.cache,node_modules,public,app}/**"
-    }
-  }
-}
