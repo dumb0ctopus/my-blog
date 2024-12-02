@@ -140,7 +140,7 @@ const About = () => {
             >
               <h1
                 id="about-heading"
-                className="sm:text-6xl text-5xl font-extrabold mb-6 text-gray-900 leading-tight dark:bg-gray-950 dark:text-white"
+                className="sm:text-6xl text-3xl font-extrabold mb-6 text-gray-900 leading-tight dark:bg-gray-950 dark:text-white"
               >
                 <span className="block">Hello,</span> I&#39;m
                 <span className="text-blue-600 mx-3">Jesuloluwa</span>
