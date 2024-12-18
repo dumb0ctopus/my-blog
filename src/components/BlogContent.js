@@ -140,7 +140,7 @@ export default function BlogContent({ post, chapter, similarPosts }) {
                           : "dark:text-gray-200 hover:bg-accent hover:text-light hover:rounded-md dark:hover:bg-accentDark dark:hover:text-black"
                       }`}
                     >
-                      {`${ch.id}: ${chapterTitles[idx]}`}
+                      {`${chapterTitles[idx]}`}
                     </li>
                   </Link>
                 );

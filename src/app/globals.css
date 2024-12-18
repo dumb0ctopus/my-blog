@@ -11,6 +11,69 @@ body {
   overflow-x: hidden;
 }
 
+.quote {
+  display: block;
+  width: 40%;
+  margin: 20px 0 40px auto;
+  background-color: #f0f8ff;
+  border-left: 4px solid #2980b9;
+  border-radius: 4px;
+  padding: 20px;
+  font-style: italic;
+  text-align: left;
+  font-size: 13px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  .quote {
+    width: 60%;
+    margin: 20px 0 40px auto;
+  }
+}
+
+.poem {
+  position: relative; /* Needed if we add decorative elements later */
+  display: block;
+  max-width: 600px;
+  margin: 40px auto; /* More vertical spacing for emphasis */
+  padding: 20px 30px;
+  border-left: 4px solid #2980b9;
+
+  /* A subtle gradient background for a refined feel */
+  background: linear-gradient(to bottom right, #f9fcff, #eaf2f8);
+
+  /* Slightly larger and more legible text for poetry */
+  font-size: 16px;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #333;
+
+  /* Improved readability through generous line spacing */
+  line-height: 1.8;
+
+  /* Soft edges and a subtle shadow for depth */
+  border-radius: 6px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+
+  /* Keep text aligned to the left so all lines start at the same baseline */
+  text-align: left;
+  font-style: italic;
+}
+
+.centered-image {
+  text-align: center;
+  margin: 30px 0; /* Add some space above and below */
+}
+
+.centered-image img {
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 body {
   font-family: "Merriweather", serif;
   font-size: 1rem;
@@ -26,13 +89,20 @@ h1 {
   font-size: 15px;
 }
 
-h2, h3, h4, h5, h6 {
-  font-family: 'Lato', sans-serif;
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lato", sans-serif;
   font-weight: 700; /* Bold headings for emphasis */
 }
 
-p, a, li, span {
-  font-family: 'Merriweather', serif; /* Consistent body text font */
+p,
+a,
+li,
+span {
+  font-family: "Merriweather", serif; /* Consistent body text font */
 }
 
 /* Ensures header, main content, and footer are positioned correctly */
@@ -172,6 +242,6 @@ main {
 }
 
 .no-scrollbar {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
-    }
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
