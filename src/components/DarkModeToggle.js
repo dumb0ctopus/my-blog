@@ -6,8 +6,7 @@ import React, { useEffect, useState } from "react";
 import SunIcon from "@/components/Icons/SunIcon";
 import MoonIcon from "@/components/Icons/MoonIcon";
 
-const DarkModeToggle = () => {
-  const [theme, setTheme] = useState("light");
+const DarkModeToggle = () => {  const [theme, setTheme] = useState("light");
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
