@@ -52,22 +52,34 @@ const About = () => {
   // Projects data
   const projects = [
     {
-      name: "My Blog Site",
-      description: "A creative way to write",
-      url: "https://github.com/dumb0ctopus/my-blog",
+      name: "Houseme",
+      description: "A real estate website.",
+      url: "https://houseme.ng",
       image: `${myBlog}project1.png`,
+    },
+    {
+      name: "Unicorn Contractors",
+      description: "A building management website.",
+      url: "https://unicorncontractors.com.ng",
+      image: `${myBlog}project2.png`,
+    },
+    {
+      name: "My blog",
+      description: "A new way to write.",
+      url: "https://github.com/dumb0ctopus/my-blog",
+      image: `${myBlog}project3.png`,
     },
     {
       name: "A Search Tool",
       description: "I'm using a tweaked version for my blog.",
       url: "https://github.com/dumb0ctopus/searchTool",
-      image: `${myBlog}project2.png`,
+      image: `${myBlog}project4.png`,
     },
     {
       name: "Epub Reader",
       description: "In progress. I'll continue to update the repo.",
       url: "https://github.com/dumb0ctopus/epubReader",
-      image: `${myBlog}project3.png`,
+      image: `${myBlog}project5.png`,
     },
   ];
 
@@ -224,7 +236,7 @@ const About = () => {
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:underline dark:text-blue-400"
                     >
-                      View on GitHub
+                      Visit
                     </a>
                   </motion.article>
                 ))}
