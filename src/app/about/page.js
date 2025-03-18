@@ -1,8 +1,6 @@
-// components/About.js
-
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Head from "next/head";
 import {
@@ -11,8 +9,6 @@ import {
   FaEnvelope,
   FaArrowUp,
   FaTwitter,
-  FaChevronLeft,
-  FaChevronRight,
   FaUser,
   FaProjectDiagram,
   FaAddressBook,
@@ -20,19 +16,16 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import siteMetadata from "@/utils/siteMetadata";
 
-const myBlog = "/images/";
+const imagesPath = "/images/";
 
 const About = () => {
   const [activeSection, setActiveSection] = useState("About");
   const [isScrolled, setIsScrolled] = useState(false);
-  const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
-  const projectsContainerRef = useRef(null);
 
-  // Handle scroll to toggle shadow in header
+  // Toggle header shadow based on scroll position
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) setIsScrolled(true);
-      else setIsScrolled(false);
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -43,7 +36,7 @@ const About = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Framer Motion variants for animations
+  // Framer Motion animation variants
   const variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
@@ -55,65 +48,33 @@ const About = () => {
       name: "Houseme",
       description: "A real estate website.",
       url: "https://houseme.ng",
-      image: `${myBlog}project1.png`,
+      image: `${imagesPath}project1.png`,
     },
     {
       name: "Unicorn Contractors",
       description: "A building management website.",
       url: "https://unicorncontractors.com.ng",
-      image: `${myBlog}project2.png`,
+      image: `${imagesPath}project2.png`,
     },
     {
       name: "My blog",
       description: "A new way to write.",
       url: "https://github.com/dumb0ctopus/my-blog",
-      image: `${myBlog}project3.png`,
+      image: `${imagesPath}project3.png`,
     },
     {
       name: "A Search Tool",
       description: "I'm using a tweaked version for my blog.",
       url: "https://github.com/dumb0ctopus/searchTool",
-      image: `${myBlog}project4.png`,
+      image: `${imagesPath}project4.png`,
     },
     {
       name: "Epub Reader",
       description: "In progress. I'll continue to update the repo.",
       url: "https://github.com/dumb0ctopus/epubReader",
-      image: `${myBlog}project5.png`,
+      image: `${imagesPath}project5.png`,
     },
   ];
-
-  // Handle project container scroll
-  useEffect(() => {
-    const container = projectsContainerRef.current;
-    if (!container) return;
-
-    const handleScroll = () => {
-      const scrollLeft = container.scrollLeft;
-      const containerWidth = container.offsetWidth;
-      const totalScrollWidth = container.scrollWidth - containerWidth;
-      const index = Math.round(
-        (scrollLeft / totalScrollWidth) * (projects.length - 1)
-      );
-      setCurrentProjectIndex(index);
-    };
-
-    container.addEventListener("scroll", handleScroll);
-    return () => container.removeEventListener("scroll", handleScroll);
-  }, [projects.length]);
-
-  // Scroll to a specific project
-  const scrollToProject = (index) => {
-    const container = projectsContainerRef.current;
-    if (!container) return;
-
-    const projectCardWidth = container.offsetWidth * 0.8; // Adjust based on your card width
-    container.scrollTo({
-      left: projectCardWidth * index,
-      behavior: "smooth",
-    });
-    setCurrentProjectIndex(index);
-  };
 
   const renderSection = () => {
     switch (activeSection) {
@@ -152,12 +113,12 @@ const About = () => {
             >
               <h1
                 id="about-heading"
-                className="sm:text-6xl text-3xl font-extrabold mb-6 text-gray-900 leading-tight dark:bg-gray-950 dark:text-white"
+                className="sm:text-6xl text-3xl font-extrabold mb-6 text-gray-900 leading-tight dark:text-white"
               >
                 <span className="block">Hello,</span> I&#39;m
                 <span className="text-blue-600 mx-3">Jesuloluwa</span>
               </h1>
-              <p className="text-lg sm:text-xl text-gray-700 leading-relaxed dark:bg-gray-950 dark:text-white">
+              <p className="text-lg sm:text-xl text-gray-700 leading-relaxed dark:text-white">
                 I'm a developer dedicated to crafting creative, dynamic web
                 experiences that are both intuitive and memorable. My passion
                 lies in building scalable solutions that address real-world
@@ -179,94 +140,49 @@ const About = () => {
             exit="hidden"
             variants={variants}
             transition={{ duration: 0.8 }}
-            className="relative py-20 dark:bg-gray-950 dark:text-white overflow-x-hidden"
+            className="py-20 dark:bg-gray-950 dark:text-white"
             aria-labelledby="projects-heading"
           >
             <h2
               id="projects-heading"
-              className="text-5xl font-bold text-center text-gray-900 mb-12 dark:bg-gray-950 dark:text-white"
+              className="text-5xl font-bold text-center text-gray-900 mb-12 dark:text-white"
             >
               Projects
             </h2>
-
-            {/* Projects Container */}
-            <div className="relative">
-              {/* Left Arrow */}
-              {currentProjectIndex > 0 && (
-                <button
-                  onClick={() => scrollToProject(currentProjectIndex - 1)}
-                  className="absolute left-2 top-1/2 transform -translate-y-1/2 p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg z-10"
-                  aria-label="Previous Project"
-                >
-                  <FaChevronLeft size={24} />
-                </button>
-              )}
-
-              {/* Projects Cards */}
-              <div
-                ref={projectsContainerRef}
-                className="flex space-x-8 overflow-x-scroll scrollbar-hidden py-6 snap-x snap-mandatory dark:bg-gray-950 dark:text-white"
-              >
-                {projects.map((project, index) => (
-                  <motion.article
-                    key={index}
-                    whileHover={{ scale: 1.05 }}
-                    className="bg-white rounded-lg shadow-xl snap-center py-5 px-3 min-w-[90%] sm:min-w-[300px] transform transition-transform duration-300 hover:scale-105 dark:bg-gray-600 dark:text-white"
-                    aria-labelledby={`project-${index}-title`}
-                  >
-                    <Image
-                      src={project.image}
-                      alt={`${project.name} Screenshot`}
-                      width={600}
-                      height={400}
-                      className="w-full h-48 object-cover rounded-md mb-4"
-                    />
-                    <h3
-                      id={`project-${index}-title`}
-                      className="text-2xl font-bold text-gray-800 mb-2 dark:text-white"
-                    >
-                      {project.name}
-                    </h3>
-                    <p className="sm:text-lg text-sm text-gray-600 mb-4 dark:text-white">
-                      {project.description}
-                    </p>
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline dark:text-blue-400"
-                    >
-                      Visit
-                    </a>
-                  </motion.article>
-                ))}
-              </div>
-
-              {/* Right Arrow */}
-              {currentProjectIndex < projects.length - 1 && (
-                <button
-                  onClick={() => scrollToProject(currentProjectIndex + 1)}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg z-10"
-                  aria-label="Next Project"
-                >
-                  <FaChevronRight size={24} />
-                </button>
-              )}
-            </div>
-
-            {/* Carousel Indicators */}
-            <div className="flex justify-center mt-8 space-x-2">
-              {projects.map((_, index) => (
-                <button
+            {/* Grid layout without horizontal overflow */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projects.map((project, index) => (
+                <motion.article
                   key={index}
-                  onClick={() => scrollToProject(index)}
-                  className={`w-3 h-3 rounded-full ${
-                    currentProjectIndex === index
-                      ? "bg-blue-600"
-                      : "bg-gray-400 dark:bg-gray-600"
-                  }`}
-                  aria-label={`Go to project ${index + 1}`}
-                ></button>
+                  whileHover={{ scale: 1.05 }}
+                  className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-5 transition-transform duration-300"
+                  aria-labelledby={`project-${index}-title`}
+                >
+                  <Image
+                    src={project.image}
+                    alt={`${project.name} Screenshot`}
+                    width={600}
+                    height={400}
+                    className="w-full h-48 object-cover rounded-md mb-4"
+                  />
+                  <h3
+                    id={`project-${index}-title`}
+                    className="text-2xl font-bold text-gray-800 mb-2 dark:text-white"
+                  >
+                    {project.name}
+                  </h3>
+                  <p className="sm:text-lg text-sm text-gray-600 mb-4 dark:text-gray-200">
+                    {project.description}
+                  </p>
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline dark:text-blue-400"
+                  >
+                    Visit
+                  </a>
+                </motion.article>
               ))}
             </div>
           </motion.main>
@@ -344,7 +260,8 @@ const About = () => {
       {/* Head Component for SEO */}
       <Head>
         <title>
-          Jesuloluwa's Portfolio | Developer, Blogger, Open Source Contributor
+          Jesuloluwa&apos;s Portfolio | Developer, Blogger, Open Source
+          Contributor
         </title>
         <meta
           name="description"
@@ -410,7 +327,7 @@ const About = () => {
           <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center mt-20">
             {/* Navigation */}
             <nav
-              className="flex space-x-6 p-5 rounded"
+              className="flex space-x-6 p-5 rounded bg-white dark:bg-gray-950"
               aria-label="Primary Navigation"
             >
               {["About", "Projects", "Contact"].map((section) => (
@@ -458,7 +375,7 @@ const About = () => {
 
         {/* Mobile Navigation Buttons */}
         <nav
-          className="fixed bottom-0 left-0 right-0 bg-white z-50 shadow-t-md md:hidden dark:bg-gray-950 dark:text-white overflow-x-hidden"
+          className="fixed bottom-0 left-0 right-0 bg-white z-50 shadow-t-lg md:hidden dark:bg-gray-950 dark:text-white"
           aria-label="Mobile Navigation"
         >
           <div className="flex justify-around py-4">
